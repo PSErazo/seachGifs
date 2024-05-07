@@ -38,9 +38,8 @@ export class GifsService {
     this._tagsHistory = localStorage.getItem('history')
       ? JSON.parse(localStorage.getItem('history')!)
       : [];
-    if (this._tagsHistory.length > 0) {
-      this.searchTag(this._tagsHistory[0]);
-    }
+    if (this._tagsHistory.length === 0) return;
+    this.searchTag(this._tagsHistory[0]);
   }
 
   searchTag(tag: string): void {
@@ -50,7 +49,7 @@ export class GifsService {
     const params = new HttpParams()
       .set('api_key', this.apiKey)
       .set('q', tag)
-      .set('limit', '10');
+      .set('limit', '20');
 
     this.http
       .get<SearchResponse>(`${this.serviceUrl}/search`, { params })
