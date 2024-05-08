@@ -1,0 +1,16 @@
+<div class="flex flex-col items-center">
+  <img
+    [src]="url"
+    [alt]="alt"
+    class="w-full h-full rounded-t-md"
+    (load)="onLoad()"
+    [ngStyle]="{ display: hasLoader ? '' : 'none' }"
+  />
+  <img
+    *ngIf="!hasLoader"
+    src="assets/loader.svg"
+    height="35"
+    width="35"
+    class="mt-3"
+  />
+</div>
